@@ -4,16 +4,27 @@ StateMachine = require('src/utils/stateMachine')
 Vector2 = require('src/utils/vector2')
 
 Player = require('src/entities/player')
+Enemy = require('src/entities/enemy')
 
 function love.load()
-    player = Player{ x = love.graphics.getWidth() / 2, y = love.graphics.getHeight() / 2}
+    player = Player{ x = love.graphics.getWidth() / 2, y = love.graphics.getHeight() / 2 }
+    enemies = {}
+    for i = 1, 5 do
+        table.insert(enemies, Enemy{ x = love.graphics.getWidth() * love.math.random(), y = love.graphics.getHeight() * love.math.random() })
+    end
 end
 
 function love.update(dt)
+    for _, e in pairs(enemies) do
+        e:update(dt)
+    end
     player:update(dt)
 end
 
 function love.draw()
+    for _, e in pairs(enemies) do
+        e:draw(dt)
+    end
     player:draw()
 end
 
