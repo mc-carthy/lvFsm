@@ -1,3 +1,7 @@
+Class = require('src/utils/class')
+Timer = require('src/utils/timer')
+StateMachine = require('src/utils/stateMachine')
+
 function love.load()
 
 end
