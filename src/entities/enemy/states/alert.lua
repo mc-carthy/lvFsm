@@ -1,11 +1,13 @@
 local AlertState = Class{ __includes = BaseState }
 
+local speed = 150
 local viewDist = 150
 local viewAngle = math.pi * 0.9
 local coneColour = { 0.75, 0, 0, 0.5 }
 
 function AlertState:enter(body)
     self.body = body
+    self.body.speed = speed
     self.body.viewDist = viewDist
     self.body.viewAngle = viewAngle
     self.body.coneColour = coneColour

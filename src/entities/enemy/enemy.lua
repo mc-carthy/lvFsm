@@ -1,10 +1,9 @@
 local Enemy = Class()
 
-local speed = 100
-
 function Enemy:init(params)
     self.x = params.x or 0
     self.y = params.y or 0
+    self.speed = 0
     self.rot = love.math.random() * 2 * math.pi
     self.viewDist = 0
     self.viewAngle = 0
@@ -20,7 +19,7 @@ end
 
 function Enemy:update(dt)
     local dx, dy = math.cos(self.rot), math.sin(self.rot)
-    self.x, self.y = self.x + dx * speed * dt, self.y + dy * speed * dt
+    self.x, self.y = self.x + dx * self.speed * dt, self.y + dy * self.speed * dt
     self:collisionCheck()
     self.state:update(dt)
 end
