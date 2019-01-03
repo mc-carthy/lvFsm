@@ -23,7 +23,10 @@ end
 
 function love.draw()
     for _, e in pairs(enemies) do
-        e:draw(dt)
+        e:drawVisionCone()
+    end
+    for _, e in pairs(enemies) do
+        e:draw()
     end
     player:draw()
 end

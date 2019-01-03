@@ -6,6 +6,8 @@ function Enemy:init(params)
     self.x = params.x or 0
     self.y = params.y or 0
     self.rot = love.math.random() * 2 * math.pi
+    self.viewDist = 100
+    self.viewAngle = math.pi / 2
 end
 
 function Enemy:update(dt)
@@ -17,6 +19,12 @@ end
 function Enemy:draw()
     love.graphics.setColor(0.75, 0, 0, 1)
     love.graphics.circle('fill', self.x, self.y, 10)
+    love.graphics.setColor(1, 1, 1, 1)
+end
+
+function Enemy:drawVisionCone()
+    love.graphics.setColor(0, 0.75, 0, 0.5)
+    love.graphics.arc("fill", self.x, self.y, self.viewDist, self.rot + self.viewAngle / 2, self.rot - self.viewAngle / 2)
     love.graphics.setColor(1, 1, 1, 1)
 end
 
