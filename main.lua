@@ -7,6 +7,7 @@ Vector2 = require('src/utils/vector2')
 Player = require('src/entities/player')
 Enemy = require('src/entities/enemy/enemy')
 IdleState = require('src/entities/enemy/states/idle')
+CautionState = require('src/entities/enemy/states/caution')
 AlertState = require('src/entities/enemy/states/alert')
 
 function love.load()

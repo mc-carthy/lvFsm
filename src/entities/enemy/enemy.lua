@@ -11,10 +11,8 @@ function Enemy:init(params)
     self.coneColour = { 0, 0, 0, 1 }
     self.state = StateMachine {
         ['idle'] = function() return IdleState() end,
-        -- ['investigation'] = function() return InvestigationState() end,
-        -- ['caution'] = function() return CautionState() end,
+        ['caution'] = function() return CautionState() end,
         ['alert'] = function() return AlertState() end,
-        -- ['dead'] = function() return DeadState() end,
     }
     self.state:change('idle', self)
     self.timer = Timer.new()

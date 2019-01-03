@@ -1,10 +1,10 @@
-local AlertState = Class{ __includes = BaseState }
+local CautionState = Class{ __includes = BaseState }
 
-local viewDist = 150
-local viewAngle = math.pi * 0.9
-local coneColour = { 0.75, 0, 0, 0.5 }
+local viewDist = 125
+local viewAngle = math.pi * 0.75
+local coneColour = { 0.75, 0.75, 0, 0.5 }
 
-function AlertState:enter(body)
+function CautionState:enter(body)
     self.body = body
     self.body.viewDist = viewDist
     self.body.viewAngle = viewAngle
@@ -13,15 +13,15 @@ function AlertState:enter(body)
     self.currentCoolDownAmount = self.coolDownAmount
 end
 
-function AlertState:update(dt)
+function CautionState:update(dt)
     if not self.body:isInViewCone(player) then
         self.currentCoolDownAmount = self.currentCoolDownAmount - dt
         if self.currentCoolDownAmount < 0 then
-            self.body.state:change('caution', self.body)
+            self.body.state:change('idle', self.body)
         end
     else
-        self.currentCoolDownAmount = self.coolDownAmount
+        self.body.state:change('alert', self.body)
     end
 end
 
-return AlertState
+return CautionState
