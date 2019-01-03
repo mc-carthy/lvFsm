@@ -1,10 +1,13 @@
 Class = require('src/utils/class')
 Timer = require('src/utils/timer')
 StateMachine = require('src/utils/stateMachine')
+BaseState = require('src/utils/baseState')
 Vector2 = require('src/utils/vector2')
 
 Player = require('src/entities/player')
-Enemy = require('src/entities/enemy')
+Enemy = require('src/entities/enemy/enemy')
+IdleState = require('src/entities/enemy/states/idle')
+AlertState = require('src/entities/enemy/states/alert')
 
 function love.load()
     player = Player{ x = love.graphics.getWidth() / 2, y = love.graphics.getHeight() / 2 }
@@ -22,6 +25,7 @@ function love.update(dt)
 end
 
 function love.draw()
+    love.graphics.setBackgroundColor(0.25, 0.25, 0.25)
     for _, e in pairs(enemies) do
         e:drawVisionCone()
     end
